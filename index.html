@@ -1,1 +1,466 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dorian Suliński</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #0e0e12;
+      --accent: #a678f5;
+      --text: #f0f0f0;
+      --muted: #a0a0a0;
+      --card-bg: #1a1a1e;
+      --shadow: rgba(0,0,0,0.4);
+      --transition: all 0.3s ease;
+    }
+    [data-theme="light"] {
+      --bg: #f5f5f5;
+      --accent: #7b52d3;
+      --text: #1a1a1e;
+      --muted: #666;
+      --card-bg: #ffffff;
+      --shadow: rgba(0,0,0,0.2);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      transition: var(--transition);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      padding: 2rem;
+      position: relative;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px var(--shadow);
+      text-align: center;
+      transform: translateZ(20px);
+      transition: var(--transition);
+      max-width: 600px;
+      width: 100%;
+    }
+    .card:hover {
+      transform: translateZ(30px) scale(1.03);
+    }
+    .typing {
+      font-size: 4rem;
+      color: var(--accent);
+      overflow: hidden;
+      border-right: 0.15em solid var(--accent);
+      white-space: nowrap;
+      animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+      display: inline-block;
+      width: auto;
+      margin: 0 auto;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--accent) }
+    }
+    span {
+      color: var(--muted);
+      font-size: 1.3rem;
+      display: block;
+      margin: 0.5rem 0;
+    }
+    p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .slider {
+      width: 100%;
+      max-width: 1200px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 1rem;
+      margin: 2rem 0;
+    }
+    .slider-title {
+      font-size: 2.5rem;
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px var(--accent);
+    }
+    .slider-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slide {
+      min-width: 300px;
+      background: var(--card-bg);
+      margin: 0 1rem;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      color: var(--text);
+      box-shadow: 0 4px 16px var(--shadow);
+      transition: var(--transition);
+    }
+    .slide:hover {
+      transform: translateY(-5px);
+    }
+    .slider-controls {
+      position: absolute;
+      bottom: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+    }
+    .slider-controls button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .slider-controls button:hover {
+      background: #7b52d3;
+      transform: scale(1.1);
+    }
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .buttons button {
+      background: var(--accent);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 0.8rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .buttons button:hover {
+      background: #7b52d3;
+      transform: translateY(-3px);
+    }
+    .socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .socials a {
+      color: var(--accent);
+      font-size: 1.8rem;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .socials a:hover {
+      transform: scale(1.2);
+      color: var(--text);
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+    .theme-toggle:hover {
+      background: #7b52d3;
+      transform: rotate(180deg);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 8px 32px var(--shadow);
+    }
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.8rem;
+      border: 1px solid var(--muted);
+      border-radius: 0.5rem;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .modal-content button {
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .modal-content button:hover {
+      background: #7b52d3;
+    }
+    .close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+    .bg-anim {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, var(--accent), transparent);
+      opacity: 0.1;
+      border-radius: 50%;
+      animation: float 15s infinite ease-in-out alternate;
+    }
+    .circle:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+    .circle:nth-child(2) { top: 60%; left: 70%; animation-delay: 4s; }
+    .circle:nth-child(3) { top: 30%; left: 50%; animation-delay: 2s; }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-50px) rotate(360deg); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    footer {
+      width: 100%;
+      padding: 0.2rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-bg);
+      color: var(--muted);
+      font-size: 15px;
+      position: relative;
+      bottom: 0;
+      box-shadow: 0 -2px 8px var(--shadow);
+    }
+    .current-time {
+      font-size: 0.7rem;
+    }
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid var(--accent);
+      border-top: 5px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @media (max-width: 768px) {
+      .typing { font-size: 2.5rem; }
+      .card { padding: 1.5rem; }
+      .slide { min-width: 250px; }
+      .slider-title { font-size: 2rem; }
+      footer { flex-direction: column; gap: 0.3rem; padding: 0.3rem 1rem; }
+      .loader-spinner { width: 40px; height: 40px; }
+    }
+    .cursor-effect {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      pointer-events: none;
+      transition: transform 0.2s ease-in-out;
+    }
 
+    .h5 {
+        font-size: 200px;
+        position: relative;
+        display: flex;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader" id="loader">
+    <div class="loader-spinner"></div>
+  </div>
+  <div class="bg-anim">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle theme">
+    <i class="fas fa-moon"></i>
+  </button>
+  <div class="container">
+    <div class="card">
+      <h1 class="typing">Dorson</h1>
+      <span>Dorian Suliński – Front-end Developer</span>
+      <p>Tworzę nowoczesne, responsywne strony internetowe z użyciem HTML, CSS, JS oraz frameworków jak React. Skupiam się na designie, użyteczności i wydajności. Każdy projekt to dla mnie forma cyfrowej sztuki ✨</p>
+    </div>
+
+    <h2 class="slider-title">Projekty</h2>
+    <div class="slider">
+      <div class="slider-track">
+        <div class="slide">💼 Portfolio - osobista strona</div>
+        <div class="slide">🎶 RankingMuzyk.site - Rywalizacja w odgadywaniu polskich muzyk</div>
+        <div class="slide">🌌 Efektowne intro 3D do startupu</div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button onclick="window.open('https://rankingmuzyk.site', '_blank')">RankingMuzyk</button>
+      <button onclick="openModal()">Skontaktuj się</button>
+    </div>
+
+    <div class="socials">
+      <a href="https://github.com/dorson3k" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="mailto:vxcode.kontakt@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+  </div>
+
+  <div class="modal" id="contactModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <h2>Skontaktuj się</h2>
+      <div>
+        <input type="text" id="name" placeholder="Imię" required aria-label="Name">
+        <input type="email" id="email" placeholder="Email" required aria-label="Email">
+        <textarea id="message" placeholder="Wiadomość" rows="5" required aria-label="Message"></textarea>
+        <button onclick="submitForm()">Wyślij</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <h5>© 2025 Dorian Suliński. Wszelkie prawa zastrzeżone.</h5>
+    <span class="current-time" id="currentTime"></span>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.documentElement.dataset.theme === 'light';
+      document.documentElement.dataset.theme = isLight ? 'dark' : 'light';
+      themeToggle.innerHTML = isLight ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    });
+
+    // Modal functions
+    function openModal() {
+      document.getElementById('contactModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('contactModal').style.display = 'none';
+    }
+
+    function submitForm() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      if (name && email && message) {
+        alert('Wiadomość wysłana! Skontaktuję się wkrótce.');
+        closeModal();
+      } else {
+        alert('Proszę wypełnić wszystkie pola.');
+      }
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+      if (e.target === document.getElementById('contactModal')) {
+        closeModal();
+      }
+    });
+
+    // Update current time
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('pl-PL', { hour12: false });
+      document.getElementById('currentTime').textContent = timeString;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // Loader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 1000); // Loader displays for 1 second
+    });
+  </script>
+</body>
+</html>
