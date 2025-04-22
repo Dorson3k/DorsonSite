@@ -5,23 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dorian Suliński</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0e0e12;
-      --accent: #a678f5;
-      --text: #f0f0f0;
-      --muted: #a0a0a0;
-      --card-bg: #1a1a1e;
-      --shadow: rgba(0,0,0,0.4);
+      --bg: #000000;
+      --accent: #ff0000;
+      --accent-dark: #b91c1c;
+      --text: #f5f5f5;
+      --muted: #d1d5db;
+      --card-bg: #1a1a1a;
+      --shadow: rgba(0, 0, 0, 0.6);
       --transition: all 0.3s ease;
-    }
-    [data-theme="light"] {
-      --bg: #f5f5f5;
-      --accent: #7b52d3;
-      --text: #1a1a1e;
-      --muted: #666;
-      --card-bg: #ffffff;
-      --shadow: rgba(0,0,0,0.2);
     }
     * {
       margin: 0;
@@ -30,101 +24,121 @@
     }
     html, body {
       width: 100%;
-      height: 100%;
-      background: var(--bg);
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--bg) 0%, #1a1a1a 100%);
       color: var(--text);
-      font-family: 'Segoe UI', sans-serif;
-      transition: var(--transition);
+      font-family: 'Inter', sans-serif;
       scroll-behavior: smooth;
       overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
     .container {
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      justify-content: space-around;
+      text-align: center;
       padding: 2rem;
+      max-width: 900px;
+      width: 100%;
       position: relative;
+      z-index: 1;
       animation: fadeIn 1.5s ease-in-out;
+      margin: 2rem 0;
     }
     .card {
       background: var(--card-bg);
-      padding: 2rem;
+      padding: 2.5rem;
       border-radius: 1.5rem;
-      box-shadow: 0 8px 32px var(--shadow);
-      text-align: center;
+      border: 1px solid var(--accent);
+      box-shadow: 0 10px 40px var(--shadow);
       transform: translateZ(20px);
       transition: var(--transition);
-      max-width: 600px;
       width: 100%;
+      max-width: 700px;
+      margin-bottom: 2rem;
     }
     .card:hover {
-      transform: translateZ(30px) scale(1.03);
+      transform: translateZ(30px) scale(1.05);
+      box-shadow: 0 15px 50px rgba(255, 0, 0, 0.3);
     }
     .typing {
-      font-size: 4rem;
-      color: var(--accent);
+      font-size: 4.5rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: slideIn 1s ease-out, typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
       overflow: hidden;
       border-right: 0.15em solid var(--accent);
       white-space: nowrap;
-      animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
       display: inline-block;
       width: auto;
-      margin: 0 auto;
-    }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: var(--accent) }
     }
     span {
-      color: var(--muted);
-      font-size: 1.3rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      animation: fadeIn 1.2s ease-out;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
       display: block;
-      margin: 0.5rem 0;
     }
     p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      font-weight: 300;
       color: var(--muted);
-      font-size: 1.1rem;
-      line-height: 1.6;
+      animation: fadeIn 1.5s ease-out;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     }
     .slider {
       width: 100%;
-      max-width: 1200px;
+      max-width: 800px;
       overflow: hidden;
       position: relative;
       border-radius: 1rem;
-      margin: 2rem 0;
+      margin: 2rem auto;
     }
     .slider-title {
       font-size: 2.5rem;
-      color: var(--accent);
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       text-transform: uppercase;
       letter-spacing: 2px;
-      text-shadow: 0 0 10px var(--accent);
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+      animation: fadeIn 1.2s ease-out;
     }
     .slider-track {
       display: flex;
       transition: transform 0.5s ease-in-out;
+      gap: 1rem;
     }
     .slide {
-      min-width: 300px;
+      min-width: 280px;
       background: var(--card-bg);
-      margin: 0 1rem;
       border-radius: 1rem;
       padding: 1.5rem;
       color: var(--text);
       box-shadow: 0 4px 16px var(--shadow);
       transition: var(--transition);
+      font-size: 1.1rem;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     }
     .slide:hover {
       transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
     }
     .slider-controls {
       position: absolute;
@@ -135,60 +149,67 @@
       gap: 0.5rem;
     }
     .slider-controls button {
-      background: var(--accent);
-      color: white;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      color: var(--text);
       border: none;
       border-radius: 50%;
       width: 40px;
       height: 40px;
       cursor: pointer;
       transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
     }
     .slider-controls button:hover {
-      background: #7b52d3;
+      background: linear-gradient(90deg, var(--accent-dark), var(--accent));
       transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
     }
     .buttons {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
       justify-content: center;
+      margin-top: 2rem;
     }
     .buttons button {
-      background: var(--accent);
-      color: white;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      color: var(--text);
       padding: 1rem 2rem;
       border: none;
       border-radius: 0.8rem;
       font-size: 1rem;
+      font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
     }
     .buttons button:hover {
-      background: #7b52d3;
+      background: linear-gradient(90deg, var(--accent-dark), var(--accent));
       transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
     }
     .socials {
       display: flex;
-      gap: 1rem;
-      margin-top: 1rem;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      justify-content: center;
     }
     .socials a {
       color: var(--accent);
-      font-size: 1.8rem;
+      font-size: 2rem;
       text-decoration: none;
       transition: var(--transition);
     }
     .socials a:hover {
-      transform: scale(1.2);
       color: var(--text);
+      transform: scale(1.3);
     }
     .theme-toggle {
       position: fixed;
       top: 1rem;
       right: 1rem;
-      background: var(--accent);
-      color: white;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      color: var(--text);
       border: none;
       border-radius: 50%;
       width: 40px;
@@ -196,10 +217,12 @@
       cursor: pointer;
       transition: var(--transition);
       z-index: 1000;
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
     }
     .theme-toggle:hover {
-      background: #7b52d3;
+      background: linear-gradient(90deg, var(--accent-dark), var(--accent));
       transform: rotate(180deg);
+      box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
     }
     .modal {
       display: none;
@@ -208,7 +231,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0, 0, 0, 0.7);
       align-items: center;
       justify-content: center;
       z-index: 1000;
@@ -217,10 +240,20 @@
       background: var(--card-bg);
       padding: 2rem;
       border-radius: 1rem;
+      border: 1px solid var(--accent);
       max-width: 500px;
       width: 90%;
       position: relative;
       box-shadow: 0 8px 32px var(--shadow);
+      animation: popIn 0.6s ease-out;
+    }
+    .modal-content h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
     }
     .modal-content input,
     .modal-content textarea {
@@ -231,71 +264,205 @@
       border-radius: 0.5rem;
       background: var(--bg);
       color: var(--text);
+      font-family: 'Inter', sans-serif;
     }
     .modal-content button {
-      background: var(--accent);
-      color: white;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      color: var(--text);
       padding: 0.8rem 1.5rem;
       border: none;
       border-radius: 0.5rem;
       cursor: pointer;
       transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
     }
     .modal-content button:hover {
-      background: #7b52d3;
+      background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+      box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
     }
     .close {
       position: absolute;
       top: 1rem;
       right: 1rem;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       cursor: pointer;
-      color: var(--muted);
+      color: var(--accent);
+      transition: var(--transition);
     }
-    .bg-anim {
+    .close:hover {
+      color: var(--accent-dark);
+      transform: scale(1.3) rotate(90deg);
+    }
+    .canvas-bg {
       position: fixed;
-      width: 100%;
-      height: 100%;
       top: 0;
       left: 0;
-      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.4;
+    }
+    .glow {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 0, 0, 0.4), transparent);
+      filter: blur(120px);
+      animation: pulse 5s infinite ease-in-out;
       z-index: -1;
     }
-    .circle {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, var(--accent), transparent);
-      opacity: 0.1;
+    .cursor-effect {
+      position: fixed;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
-      animation: float 15s infinite ease-in-out alternate;
+      background: radial-gradient(circle, rgba(255, 0, 0, 0.3), transparent);
+      pointer-events: none;
+      z-index: 999;
+      transition: transform 0.2s ease-in-out;
+      mix-blend-mode: screen;
     }
-    .circle:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
-    .circle:nth-child(2) { top: 60%; left: 70%; animation-delay: 4s; }
-    .circle:nth-child(3) { top: 30%; left: 50%; animation-delay: 2s; }
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); }
-      100% { transform: translateY(-50px) rotate(360deg); }
+    .skill-cloud {
+      margin: 2rem auto;
+      max-width: 800px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      animation: fadeIn 1.8s ease-out;
+    }
+    .skill-tag {
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 2px 10px rgba(255, 0, 0, 0.3);
+    }
+    .skill-tag:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+    }
+    .achievement {
+      margin: 2rem auto;
+      max-width: 700px;
+      padding: 1.5rem;
+      background: var(--card-bg);
+      border-radius: 1rem;
+      border: 1px solid var(--accent);
+      box-shadow: 0 4px 16px var(--shadow);
+      animation: fadeIn 1.5s ease-out;
+    }
+    .achievement h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .achievement p {
+      font-size: 1rem;
+      color: var(--muted);
+    }
+    .timeline {
+      margin: 2rem auto;
+      max-width: 800px;
+      position: relative;
+      padding: 2rem 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      margin: 2rem 0;
+      position: relative;
+      width: 100%;
+    }
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-right: 2rem;
+      text-align: right;
+    }
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: 2rem;
+      text-align: left;
+    }
+    .timeline-content {
+      background: var(--card-bg);
+      padding: 1rem;
+      border-radius: 0.8rem;
+      border: 1px solid var(--accent);
+      box-shadow: 0 4px 16px var(--shadow);
+      width: 45%;
+      animation: fadeIn 1.5s ease-out;
+    }
+    .timeline-content h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-content p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      width: 16px;
+      height: 16px;
+      background: var(--accent);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.3); opacity: 0.9; }
+    }
+    @keyframes slideIn {
+      0% { opacity: 0; transform: translateY(-70px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--accent) }
+    }
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      80% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
     }
     footer {
       width: 100%;
-      padding: 0.2rem 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding: 1rem;
       background: var(--card-bg);
       color: var(--muted);
-      font-size: 15px;
-      position: relative;
-      bottom: 0;
+      font-size: 0.9rem;
+      text-align: center;
       box-shadow: 0 -2px 8px var(--shadow);
+      z-index: 1;
     }
     .current-time {
-      font-size: 0.7rem;
+      font-size: 0.8rem;
+      color: var(--accent);
     }
     .loader {
       position: fixed;
@@ -316,10 +483,10 @@
       pointer-events: none;
     }
     .loader-spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid var(--accent);
-      border-top: 5px solid transparent;
+      width: 60px;
+      height: 60px;
+      border: 6px solid var(--accent);
+      border-top: 6px solid transparent;
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
@@ -328,27 +495,45 @@
       100% { transform: rotate(360deg); }
     }
     @media (max-width: 768px) {
-      .typing { font-size: 2.5rem; }
-      .card { padding: 1.5rem; }
-      .slide { min-width: 250px; }
-      .slider-title { font-size: 2rem; }
-      footer { flex-direction: column; gap: 0.3rem; padding: 0.3rem 1rem; }
-      .loader-spinner { width: 40px; height: 40px; }
+      .typing { font-size: 2.8rem; }
+      span { font-size: 1.3rem; }
+      p { font-size: 1rem; }
+      .card { padding: 1.5rem; max-width: 90%; }
+      .slider { max-width: 100%; }
+      .slider-title { font-size: 1.8rem; }
+      .slide { min-width: 200px; font-size: 0.9rem; }
+      .slider-controls { bottom: -40px; }
+      .buttons button { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
+      .socials a { font-size: 1.5rem; }
+      .modal-content { padding: 1.5rem; max-width: 95%; }
+      .modal-content h2 { font-size: 1.5rem; }
+      .skill-cloud { gap: 0.5rem; }
+      .skill-tag { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+      .achievement { padding: 1rem; }
+      .achievement h3 { font-size: 1.2rem; }
+      .timeline::before { left: 10%; }
+      .timeline-item { flex-direction: column; align-items: flex-start; }
+      .timeline-item:nth-child(odd) .timeline-content,
+      .timeline-item:nth-child(even) .timeline-content {
+        margin: 1rem 0 0 2rem;
+        text-align: left;
+        width: 80%;
+      }
+      .timeline-dot { left: 10%; }
+      footer { padding: 0.5rem; font-size: 0.8rem; }
+      .loader-spinner { width: 50px; height: 50px; }
     }
-    .cursor-effect {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: var(--accent);
-      pointer-events: none;
-      transition: transform 0.2s ease-in-out;
-    }
-
-    .h5 {
-        font-size: 200px;
-        position: relative;
-        display: flex;
+    @media (max-width: 480px) {
+      .typing { font-size: 2.2rem; }
+      span { font-size: 1.1rem; }
+      p { font-size: 0.9rem; }
+      .card { padding: 1rem; }
+      .slider-title { font-size: 1.5rem; }
+      .slide { min-width: 180px; }
+      .buttons { flex-direction: column; align-items: center; }
+      .socials { gap: 1rem; }
+      .modal-content input, .modal-content textarea { padding: 0.6rem; }
+      .modal-content button { padding: 0.6rem 1rem; }
     }
   </style>
 </head>
@@ -356,11 +541,10 @@
   <div class="loader" id="loader">
     <div class="loader-spinner"></div>
   </div>
-  <div class="bg-anim">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-  </div>
+  <canvas id="bgCanvas" class="canvas-bg"></canvas>
+  <div class="glow" style="top: 5%; left: 10%;"></div>
+  <div class="glow" style="bottom: 10%; right: 15%;"></div>
+  <div class="cursor-effect" id="cursorEffect"></div>
   <button class="theme-toggle" aria-label="Toggle theme">
     <i class="fas fa-moon"></i>
   </button>
@@ -368,15 +552,59 @@
     <div class="card">
       <h1 class="typing">Dorson</h1>
       <span>Dorian Suliński – Front-end Developer</span>
-      <p>Tworzę nowoczesne, responsywne strony internetowe z użyciem HTML, CSS, JS oraz frameworków jak React. Skupiam się na designie, użyteczności i wydajności. Każdy projekt to dla mnie forma cyfrowej sztuki ✨</p>
+      <p>Tworzę nowoczesne, responsywne strony internetowe z użyciem HTML, CSS, JavaScript oraz frameworków takich jak React. Moim celem jest łączenie estetycznego designu z wysoką użytecznością i wydajnością. Każdy projekt traktuję jako unikalną opowieść cyfrową, która ma inspirować i angażować użytkowników ✨</p>
+    </div>
+
+    <div class="skill-cloud">
+      <div class="skill-tag">HTML5</div>
+      <div class="skill-tag">CSS3</div>
+      <div class="skill-tag">JavaScript</div>
+      <div class="skill-tag">Git</div>
+      <div class="skill-tag">Responsive Design</div>
+      <div class="skill-tag">Web Performance</div>
+      <div class="skill-tag">UI/UX</div>
     </div>
 
     <h2 class="slider-title">Projekty</h2>
     <div class="slider">
       <div class="slider-track">
         <div class="slide">💼 Dorson.site - osobista strona</div>
-        <div class="slide">🎶 RankingMuzyk.site - osobisty stary projekt</div>
-        <div class="slide">🌌 Efektowne intro 3D do startupu</div>
+        <div class="slide">🎶 RankingMuzyk.site - platforma do oceniania muzyki</div>
+        <div class="slide">🌌 Efektowne intro 3D dla startupu technologicznego</div>
+        <div class="slide">📱 Aplikacja webowa do zarządzania zadaniami</div>
+      </div>
+      <div class="slider-controls">
+        <button onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+        <button onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <div class="achievement">
+      <h3>Nagroda za innowacyjny design</h3>
+      <p>Otrzymałem wyróżnienie w prywatnym konkursie 2024 za projekt interfejsu użytkownika dla aplikacji mobilnej, który łączył minimalizm z intuicyjną nawigacją.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>2023 - Rozpoczęcie kariery</h4>
+          <p>Zacząłem pracę nad pierwszymi projektami.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>2024 - Uruchomienie vxcode.pl</h4>
+          <p>Stworzyłem grupę developerów vxcode</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>2025 - Przejście na prywatną działalność</h4>
+          <p>Zacząłem pracować sam nad projektami, co mi dobrze wychodzi.</p>
+        </div>
       </div>
     </div>
 
@@ -388,6 +616,7 @@
     <div class="socials">
       <a href="https://github.com/dorson3k" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
       <a href="mailto:vxcode.kontakt@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://linkedin.com/in/dorson" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
     </div>
   </div>
 
@@ -405,8 +634,7 @@
   </div>
 
   <footer>
-    <h5>© 2025 Dorian Suliński. Wszelkie prawa zastrzeżone.</h5>
-    <span class="current-time" id="currentTime"></span>
+    © 2025 Dorian Suliński. Wszelkie prawa zastrzeżone. <span class="current-time" id="currentTime"></span>
   </footer>
 
   <script>
@@ -446,6 +674,30 @@
       }
     });
 
+    // Slider functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function updateSlider() {
+      const sliderTrack = document.querySelector('.slider-track');
+      const slideWidth = slides[0].offsetWidth + 16; // Including gap
+      sliderTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlider();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSlider();
+    }
+
+    // Auto-slide every 5 seconds
+    setInterval(nextSlide, 5000);
+
     // Update current time
     function updateTime() {
       const now = new Date();
@@ -459,7 +711,92 @@
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('loader').classList.add('hidden');
-      }, 1000); // Loader displays for 1 second
+      }, 1000);
+    });
+
+    // Canvas background animation with particles
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 5 + 1;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.speedY = Math.random() * 0.5 - 0.25;
+        this.color = `rgba(255, 0, 0, ${Math.random() * 0.6 + 0.3})`;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.size > 0.2) this.size -= 0.01;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      for (let i = 0; i < 150; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height); 
+      particles.forEach((particle, index) => {
+        particle.update();
+        particle.draw();
+        if (particle.size <= 0.2) {
+          particles.splice(index, 1);
+          particles.push(new Particle());
+        }
+      });
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      updateSlider(); // Update slider on resize
+    });
+
+    // Cursor effect
+    const cursorEffect = document.getElementById('cursorEffect');
+    document.addEventListener('mousemove', (e) => {
+      cursorEffect.style.left = `${e.clientX}px`;
+      cursorEffect.style.top = `${e.clientY}px`;
+      cursorEffect.style.transform = 'translate(-50%, -50%) scale(1)';
+    });
+    document.addEventListener('mouseleave', () => {
+      cursorEffect.style.transform = 'translate(-50%, -50%) scale(0)';
+    });
+
+    // Parallax effect on card
+    document.addEventListener('mousemove', (e) => {
+      const card = document.querySelector('.card');
+      const rect = card.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const moveX = (e.clientX - centerX) / 50;
+      const moveY = (e.clientY - centerY) / 50;
+      card.style.transform = `translateZ(20px) rotateX(${moveY}deg) rotateY(${-moveX}deg)`;
+    });
+    document.addEventListener('mouseleave', () => {
+      const card = document.querySelector('.card');
+      card.style.transform = 'translateZ(20px)';
     });
   </script>
 </body>
