@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projekty — Ds Studio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/images/logo.png">
+</head>
+<body>
+  <div id="cursor" class="cursor" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader" data-parallax="0.02">
+    <div class="container header-inner">
+      <a class="brand" href="index.html"><img src="assets/images/logo.png" alt="Ds Studio" class="brand-logo"><span class="brand-text">Ds Studio</span></a>
+      <nav class="nav" id="mainNav" aria-label="Główna nawigacja">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="projects.html" class="nav-link active">Projekty</a></li>
+          <li><a href="about.html" class="nav-link">O mnie</a></li>
+          <li><a href="contact.html" class="nav-link">Kontakt</a></li>
+        </ul>
+      </nav>
+      <button id="hamburger" class="hamburger" aria-label="Otwórz menu"><span class="h-line"></span><span class="h-line"></span><span class="h-line"></span></button>
+    </div>
+  </header>
+
+  <main class="projects-page">
+    <section class="projects-hero container">
+      <h1 class="section-title">Wybrane projekty</h1>
+      <p class="muted">Filmy i sesje fotograficzne z Ds Studio — kliknij, aby obejrzeć.</p>
+
+      <div class="projects-controls">
+        <input id="searchProjects" placeholder="Szukaj po tytule..." aria-label="Szukaj projektów">
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">Wszystkie</button>
+          <button class="filter-btn" data-filter="video">Wideo</button>
+          <button class="filter-btn" data-filter="photo">Foto</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects-grid container" id="projectsGrid" aria-live="polite">
+      <noscript><p class="muted">Włącz JavaScript, aby zobaczyć interaktywną galerię projektów.</p></noscript>
+    </section>
+  </main>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true"></div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">© <strong>Ds Studio</strong></div>
+      <div class="footer-right"><a>Dorian Suliński - Wszelkie prawa zastrzeżone</a></div>
+    </div>
+  </footer>
+
+  <script src="js/projects-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
