@@ -1,106 +1,247 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ds Studio — Dorian Suliński</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="assets/images/logo.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moja Walentynka ❤️</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background: linear-gradient(-45deg, #ff4e50, #fc913a, #f9d423, #ff6f91);
+    background-size: 300% 300%;
+    animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.container{
+    width:95%;
+    max-width:420px;
+    padding:25px;
+    text-align:center;
+    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.1);
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+    color:white;
+    transition:1s;
+}
+
+h1{
+    font-size:22px;
+    margin-bottom:20px;
+    font-weight:600;
+    text-shadow:0 0 15px rgba(255,255,255,0.6);
+}
+
+.photo{
+    width:100%;
+    border-radius:20px;
+    margin-bottom:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.4);
+}
+
+.buttons{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+}
+
+/* SERCE */
+.heart-btn{
+    position:relative;
+    width:90px;
+    height:90px;
+    border:none;
+    cursor:pointer;
+    transform: rotate(-45deg);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:700;
+    font-size:18px;
+    color:white;
+    transition:0.3s;
+    backdrop-filter: blur(5px);
+}
+
+.heart-btn span{
+    transform: rotate(45deg);
+    z-index:2;
+}
+
+.heart-btn::before,
+.heart-btn::after{
+    content:"";
+    position:absolute;
+    width:90px;
+    height:90px;
+    background:inherit;
+    border-radius:50%;
+    z-index:1;
+}
+
+.heart-btn::before{
+    top:-45px;
+    left:0;
+}
+
+.heart-btn::after{
+    left:45px;
+    top:0;
+}
+
+.yes{
+    background: linear-gradient(135deg,#00c853,#69f0ae);
+    box-shadow:0 10px 25px rgba(0,255,150,0.4);
+}
+
+.no{
+    background: linear-gradient(135deg,#ff1744,#ff8a80);
+    box-shadow:0 10px 25px rgba(255,0,80,0.4);
+}
+
+.heart-btn:hover{
+    transform: rotate(-45deg) scale(1.1);
+}
+
+.pulse{
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+    0%{transform: rotate(-45deg) scale(1);}
+    50%{transform: rotate(-45deg) scale(1.2);}
+    100%{transform: rotate(-45deg) scale(1);}
+}
+
+.hidden{
+    display:none;
+}
+
+.fade-out{
+    animation:fadeOut 1s forwards;
+}
+
+@keyframes fadeOut{
+    to{opacity:0; transform:scale(0.8);}
+}
+
+/* Typing effect */
+.typing{
+    font-size:22px;
+    font-weight:500;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right:3px solid white;
+    width:0;
+    animation: typing 4s steps(40,end) forwards, blink 0.8s infinite;
+}
+
+@keyframes typing{
+    from{width:0}
+    to{width:100%}
+}
+
+@keyframes blink{
+    50%{border-color:transparent}
+}
+
+/* Latające serca */
+.heart{
+    position:absolute;
+    bottom:-10px;
+    color:white;
+    font-size:20px;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp{
+    to{
+        transform: translateY(-110vh);
+        opacity:0;
+    }
+}
+
+</style>
 </head>
 <body>
-  <!-- custom cursor -->
-  <div id="cursor" class="cursor" aria-hidden="true"></div>
 
-  <!-- preloader -->
-  <div id="preloader" class="preloader" aria-hidden="true">
-    <div class="loader"></div>
-  </div>
-
-  <!-- header -->
-  <header class="site-header" id="siteHeader" data-parallax="0.02">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Ds Studio — Home">
-        <img src="assets/images/logo.png" alt="Ds Studio" class="brand-logo">
-        <span class="brand-text">Ds Studio</span>
-      </a>
-
-      <nav class="nav" id="mainNav" aria-label="Główna nawigacja">
-        <ul class="nav-list">
-          <li><a href="index.html" class="nav-link active">Home</a></li>
-          <li><a href="projects.html" class="nav-link">Projekty</a></li>
-          <li><a href="about.html" class="nav-link">O mnie</a></li>
-          <li><a href="contact.html" class="nav-link">Kontakt</a></li>
-        </ul>
-      </nav>
-
-      <button id="hamburger" class="hamburger" aria-label="Otwórz menu">
-        <span class="h-line"></span><span class="h-line"></span><span class="h-line"></span>
-      </button>
+<div class="container" id="mainContent">
+    <h1 id="question">Czy zostaniesz moją walentynką? ❤️</h1>
+    <img src="zdj.jpg" class="photo">
+    
+    <div class="buttons">
+        <button class="heart-btn yes" id="yesBtn">
+            <span>TAK</span>
+        </button>
+        <button class="heart-btn no" id="noBtn">
+            <span>NIE</span>
+        </button>
     </div>
-  </header>
+</div>
 
-  <!-- hero -->
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-left" data-parallax="0.03">
-          <h1 class="hero-title">Ds <span class="accent">Studio</span><br><small class="light">Fotografia & Kamerzysta</small></h1>
-          <p class="hero-sub">Specjalizuję się w filmach motoryzacyjnych, sesjach stylizowanych i produkcjach komercyjnych. Precyzja, ruch i estetyka.</p>
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="projects.html">Zobacz projekty</a>
-            <a class="btn btn-outline" href="contact.html">Zamów sesję</a>
-          </div>
+<script>
 
-          <ul class="quick-stats">
-            <li><strong>Szybkie</strong><span>realizacje</span></li>
-            <li><strong>20+</strong><span>sesji</span></li>
-            <li><strong>Follow Car</strong><span>sprzęt</span></li>
-          </ul>
-        </div>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const question = document.getElementById("question");
+const mainContent = document.getElementById("mainContent");
 
-        <div class="hero-right" data-parallax="-0.02">
-          <div class="reel-card scroll-reveal">
-            <video class="reel-video" playsinline autoplay muted loop poster="assets/images/banner.png">
-              <source src="assets/videos/project1.mp4" type="video/mp4">
-            </video>
-            <div class="reel-meta">
-              <div class="meta-title"></div>
-              <div class="meta-sub"></div>
+noBtn.addEventListener("click", ()=>{
+    question.textContent = "Na pewno? 🥺";
+    noBtn.classList.add("hidden");
+    yesBtn.classList.add("pulse");
+});
+
+yesBtn.addEventListener("click", ()=>{
+    mainContent.classList.add("fade-out");
+
+    setTimeout(()=>{
+        mainContent.innerHTML = `
+            <div class="typing">
+                Kocham Cię – Twój Doruś <3
             </div>
-            <div class="reel-badge">NOWA ZAKŁADKA</div>
-          </div>
-        </div>
-      </div>
-    </section>
+        `;
+        mainContent.classList.remove("fade-out");
+    },1000);
+});
 
-    <section class="features container">
-      <div class="feature scroll-reveal">
-        <h4>Filmowanie</h4>
-        <p>Kompletna produkcja: od scenariusza po grading.</p>
-      </div>
-      <div class="feature scroll-reveal">
-        <h4>Fotografia</h4>
-        <p>Sesje plenerowe, detale i packshoty.</p>
-      </div>
-      <div class="feature scroll-reveal">
-        <h4>Postprodukcja</h4>
-        <p>Montaż, color grading, retusz — finalny materiał gotowy do publikacji.</p>
-      </div>
-    </section>
-  </main>
+/* Serduszka */
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = Math.random()*25 + 15 + "px";
+    heart.style.animationDuration = (Math.random()*3 + 4) + "s";
+    document.body.appendChild(heart);
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-left">© <strong>Ds Studio</strong> — Dorian Suliński</div>
-      <div class="footer-right">
-        <a href="mailto:kontakt@ds-studio.pl">doriansulinski07@gmail.com</a>
-        <span class="sep">•</span>
-        <a href="https://www.instagram.com/d.s_studio7/" target="_blank" rel="noopener">Instagram</a>
-      </div>
-    </div>
-  </footer>
+    setTimeout(()=>heart.remove(),7000);
+}
 
-  <script src="js/projects-data.js"></script>
-  <script src="js/main.js"></script>
+setInterval(createHeart,400);
+
+</script>
+
 </body>
 </html>
